@@ -2,6 +2,30 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'recyclerviewbinding'
+
+    publishedGroupId = 'com.jaumard'
+    libraryName = 'RecyclerViewBinding'
+    artifact = 'recyclerviewbinding'
+
+    libraryDescription = 'A wrapper for Facebook Native Like Button (LikeView) on Android'
+
+    siteUrl = 'https://github.com/jaumard/RecyclerViewBinding'
+    gitUrl = 'https://github.com/jaumard/RecyclerViewBinding.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'jaumard'
+    developerName = 'Jimmy Aumard'
+    developerEmail = 'jimmy.aumard@gmail.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
+
 android {
     compileSdkVersion 27
 
@@ -29,7 +53,6 @@ android {
         sourceCompatibility 1.8
     }
 }
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -43,4 +66,5 @@ repositories {
     mavenCentral()
 }
 
-apply from: 'publish.gradle'
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
