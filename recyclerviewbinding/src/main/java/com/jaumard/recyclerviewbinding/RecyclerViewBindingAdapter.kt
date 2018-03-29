@@ -9,16 +9,24 @@ object RecyclerViewBindingAdapter {
                              items: List<T>,
                              itemBinder: MultipleTypeItemBinder,
                              listener: BindableRecyclerAdapter.OnClickListener<T>?) {
-        var adapter: BindableRecyclerAdapter<T>? = recyclerView.adapter as? BindableRecyclerAdapter<T>
+        setRecyclerItems(recyclerView, items, itemBinder, listener, BindableRecyclerAdapter(items, itemBinder))
+    }
 
-        if (adapter == null) {
-            adapter = BindableRecyclerAdapter(items, itemBinder)
+    @JvmStatic
+    fun <T> setRecyclerItems(recyclerView: RecyclerView,
+                             items: List<T>,
+                             itemBinder: MultipleTypeItemBinder,
+                             listener: BindableRecyclerAdapter.OnClickListener<T>?,
+                             adapter: BindableRecyclerAdapter<T>) {
+        val existingAdapter: BindableRecyclerAdapter<T>? = recyclerView.adapter as? BindableRecyclerAdapter<T>
+
+        if (existingAdapter == null) {
             adapter.setOnClickListener(listener)
             recyclerView.adapter = adapter
         } else {
-            adapter.setOnClickListener(listener)
-            adapter.setItemBinder(itemBinder)
-            adapter.setItems(items)
+            existingAdapter.setOnClickListener(listener)
+            existingAdapter.setItemBinder(itemBinder)
+            existingAdapter.setItems(items)
         }
     }
 }

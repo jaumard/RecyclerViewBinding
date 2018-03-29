@@ -7,7 +7,18 @@ This library is for you ! Android data binding help you write less code, with th
 It's easy to use, first install the library:
 
 ```groovy
-implementation 'com.jaumard:recyclerviewbinding:1.0.0'
+implementation 'com.jaumard:recyclerviewbinding:1.0.1'
+```
+
+Under your main build gradle you need to add this:
+
+```groovy
+allprojects {
+    repositories {
+        maven { url "http://dl.bintray.com/jaumard/maven" }
+        //...other repo here
+    }
+}
 ```
 
 I assume that your project is already configured to use data binding, if not please follow [this steps](https://developer.android.com/topic/libraries/data-binding/index.html)
@@ -237,6 +248,11 @@ Then `getItemLayout` is called with the current item type to render (so 0 or 1 h
 
 ## Examples
 This library come with a small example app, feel free to check it to see all the above cases.
+
+## Deployment to bintray
+```
+./gradlew clean bintrayUpload
+```
 
 ## Licence
 

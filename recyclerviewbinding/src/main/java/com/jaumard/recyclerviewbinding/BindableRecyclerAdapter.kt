@@ -10,11 +10,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import java.lang.ref.WeakReference
 
-class BindableRecyclerAdapter<T>(items: List<T>?, private var itemBinder: MultipleTypeItemBinder) : RecyclerView.Adapter<BindableRecyclerAdapter.ViewHolder>() {
+open class BindableRecyclerAdapter<T>(items: List<T>?, private var itemBinder: MultipleTypeItemBinder) : RecyclerView.Adapter<BindableRecyclerAdapter.ViewHolder>() {
     private var inflater: LayoutInflater? = null
-    private val items = ObservableArrayList<T>()
     private var onClickListener: OnClickListener<T>? = null
     private val callback = WeakReferenceOnListChangedCallback(this)
+    val items = ObservableArrayList<T>()
 
     init {
         if (items != null) {
@@ -38,7 +38,7 @@ class BindableRecyclerAdapter<T>(items: List<T>?, private var itemBinder: Multip
         val binding = holder.binding
         binding.setVariable(itemBinder.variableId, items[position])
         for (data in itemBinder.additionalVariables) {
-            binding.setVariable(data.first, data.second)
+            binding.setVariable(data.first!!, data.second)
         }
         binding.root.tag = items[position]
         if (onClickListener != null) {
@@ -47,12 +47,12 @@ class BindableRecyclerAdapter<T>(items: List<T>?, private var itemBinder: Multip
         binding.executePendingBindings()
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         this.items.addOnListChangedCallback(callback)
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
         this.items.removeOnListChangedCallback(callback)
     }
