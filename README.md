@@ -1,5 +1,7 @@
 # RecyclerViewBinding
 
+[ ![Download](https://api.bintray.com/packages/jaumard/maven/recyclerviewbinding/images/download.svg) ](https://bintray.com/jaumard/maven/recyclerviewbinding/_latestVersion)
+
 Tired of creating recycler view adapter and recycler view holder on your Android applications ?
 
 This library is for you ! Android data binding help you write less code, with this library it will be even less :)
@@ -7,7 +9,7 @@ This library is for you ! Android data binding help you write less code, with th
 It's easy to use, first install the library:
 
 ```groovy
-implementation 'com.jaumard:recyclerviewbinding:1.0.1'
+implementation 'com.jaumard:recyclerviewbinding:x.x.x'
 ```
 
 Under your main build gradle you need to add this:
