@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference
 open class BindableRecyclerAdapter<T>(items: List<T>?, private var itemBinder: MultipleTypeItemBinder) : RecyclerView.Adapter<BindableRecyclerAdapter.ViewHolder>() {
     private var inflater: LayoutInflater? = null
     private var onClickListener: OnClickListener<T>? = null
-    private val callback = WeakReferenceOnListChangedCallback(this)
+    private val callback by lazy { WeakReferenceOnListChangedCallback(this) }
     val items = ObservableArrayList<T>()
 
     init {
